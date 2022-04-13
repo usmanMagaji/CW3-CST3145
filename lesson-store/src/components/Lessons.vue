@@ -1,74 +1,47 @@
 <template>
-  <div id="app">
+  <section class="Suject-lessons">
+       <div class="product-container" id="Shop-product">
+        <div  v-for="product in products" :key="product.id" >
+                    <div class="product-container" id="Shop-product">
+                    <div class="product-box">
+                    <h2 v-text="product.title"></h2>
+                    <div class="product-img">
+                    <figure>
+                        <img v-bind:src="product.image">
+                    </figure>
+                </div>
+                <div class="product-details">
+                    <p v-html="product.Location"></p>
+                    <p>Price: {{product.price}}</p>
    
-
-    <header>
-      <section class="Subject-lessons">
-      <h1>{{sitename}}</h1>
-      <button  @click="showCheckout">{{this.cart.length}}Checkout</button>
-
-        <div v-if='showProduct'>
-          
-      <product :products="products"  @addProduct="addToCart"></product>
-      </div>
-          <div v-else>
-
-      <checkout :cart="cart" @removeProduct='removeProduct'></checkout>
-      </div>
-      </section>
-    </header>
-  </div>
+                    <div class="add-cart">
+                    <button v-on:click="addToCart(product)">
+                        add to cart
+                        </button>
+                    </div>         
+    </div>
+   </div>
+    </div>
+   </div>
+</div>
+</section>
+       
 
 </template>
 
-
 <script>
-import product from "./components/Lessons.vue";
-import checkout from "./components/checkoutForm.vue";
-
 export default {
-  name: "App",
-  components: {
-    product,
-    checkout,
-  
-  },
-  data() {
-    return {
-      sitename: "After school Lesson",
-       cart: [],
-       products:[],
-     showProduct: true, 
-     
-    };
-  },
-  created  () {
-        console.log('requesting data from server ...')
-        fetch('https://coursework2-3145.herokuapp.com/collection/Product',{
-          method: "GET", // set the HTTP method as 'POST'
-          headers: {
-            'Content-Type': 'application/json', // set the data type as JSON
-            'mode' : 'no-cors'
-              }
-        }).then(response => response.json())
-      .then(data => (this.products = data));
-                
-            },
-   methods: {
-    showCheckout() {
-                   // console.log(this.showProduct);
-                    this.showProduct = this.showProduct ? false : true;
-                },
-    addToCart(product) {
-      console.log("addLesson event received by the root component.");
-      this.cart.push(product);
-    },
-    cartItemCount () {
-        return this.cart.length;
+    name: "LessonList",
+    props:["products"],
+   
+    methods: {
+      addToCart(product) {
+        console.log ('Added lesson', product.id);
+        this.$emit('addProduct', product);
       },
-  },
-};
-
+      
+    },
+  };
 </script>
 <style scoped>
 body{
@@ -78,17 +51,6 @@ body{
 	html {
   scroll-behavior: smooth;
 }
-
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 30px;
-    font-size: 25px;
-    color: #00B4CC;
-    font-family: "Comic Sans MS", "Courier New", monospace;
-} 
 
 .cart-head{
     display: flex;
@@ -100,17 +62,7 @@ header{
     color: #00B4CC;
     font-family: "Comic Sans MS", "Courier New", monospace;
 }
-.Sort{
-    top:300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 30px;
-    font-size: 20px;
-    color: #00B4CC;
-    font-family: "Comic Sans MS", "Courier New", monospace;
-}
+
 
 .classes-back button{
     width:170px;
