@@ -4,7 +4,7 @@
         <div  v-for="product in products" :key="product.id" >
                     <div class="product-container" id="Shop-product">
                     <div class="product-box">
-                    <h2 v-text="product.title"></h2>
+                    <h2 v-text="product.Subject"></h2>
                     <div class="product-img">
                     <figure>
                         <img v-bind:src="product.image">
@@ -89,6 +89,7 @@ body{
     align-items: center;
 }
 .product-container{
+    margin-top:0px;
 	width:100%;
     display: flex;
     justify-content: center;
@@ -107,7 +108,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 150px
+    margin-top: 10px
 	
 }
 .product-box{

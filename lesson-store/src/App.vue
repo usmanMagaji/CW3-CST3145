@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-   
-
     <header>
       <section class="Subject-lessons">
       <h1>{{sitename}}</h1>
-      <button  @click="showCheckout">{{this.cart.length}}Checkout</button>
+     
 
         <div v-if='showProduct'>
-          
+          <div class="cart-button">
+           <button  @click="showCheckout">{{this.cart.length}}Checkout</button>
+          </div>
       <product :products="products"  @addProduct="addToCart"></product>
+      
       </div>
           <div v-else>
-
-      <checkout :cart="cart" @removeProduct='removeProduct'></checkout>
+            <div class="cart-button">
+ <button  @click="showCheckout">Back home</button>
+ </div>
+      <checkout :cart="cart"></checkout>
       </div>
       </section>
     </header>
@@ -135,6 +138,7 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
 .product-container{
 	width:100%;
@@ -142,7 +146,7 @@ header{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    top: 500px;
+    top: 200;
 }
 .product-container h2{
     font-size: 30px;
@@ -155,7 +159,7 @@ header{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 150px
+    margin-top: 50px
 	
 }
 .product-box{

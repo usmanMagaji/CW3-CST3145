@@ -26,7 +26,6 @@
  </main>
  
 </template>
-
 <script>
 export default {
   name: "checkout",
@@ -38,8 +37,11 @@ export default {
 }; },
 methods: {
      remove(product) {
-        this.$emit('removeProduct', product)
-     }},
+       
+                            this.cart.splice(this.cart.indexOf(product))
+                     
+     }
+     },
 
 }
 </script>
