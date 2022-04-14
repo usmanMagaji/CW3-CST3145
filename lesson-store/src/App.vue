@@ -48,9 +48,9 @@ export default {
   created  () {
         console.log('requesting data from server ...')
         fetch('https://coursework2-3145.herokuapp.com/collection/Product',{
-          method: "GET", // set the HTTP method as 'POST'
+          method: "GET", 
           headers: {
-            'Content-Type': 'application/json', // set the data type as JSON
+            'Content-Type': 'application/json', 
             'mode' : 'no-cors'
               }
         }).then(response => response.json())
@@ -66,7 +66,7 @@ export default {
    
   
   this.cart.splice(this.cart.indexOf(product),1)
-  product.space ++
+
   },
     addToCart(product) {
       console.log("addLesson event received by the root component.");
