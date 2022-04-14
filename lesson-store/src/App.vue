@@ -16,7 +16,7 @@
             <div class="cart-button">
  <button  @click="showCheckout">Back home</button>
  </div>
-      <checkout :cart="cart"></checkout>
+      <checkout :cart="cart" @removeProduct='removeProduct'></checkout>
       </div>
       </section>
     </header>
@@ -62,6 +62,12 @@ export default {
                    // console.log(this.showProduct);
                     this.showProduct = this.showProduct ? false : true;
                 },
+                removeProduct(product){
+   
+  
+  this.cart.splice(this.cart.indexOf(product),1)
+  product.space ++
+  },
     addToCart(product) {
       console.log("addLesson event received by the root component.");
       this.cart.push(product);

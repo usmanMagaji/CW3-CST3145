@@ -35,20 +35,20 @@
 </template>
 <script>
 export default {
-  name: "checkout",
+  name: "checkout-page",
   props: ['cart'],
   data() {
     return {
       name: "",
       phone: "",
-}; },
+}; 
+
+},
 methods: {
      remove(product) {
-       
-           this.cart.splice(this.cart.indexOf(product))
-                     
-     }
-     },
+        this.$emit('removeProduct', product)
+     }},
+
 
 }
 </script>
