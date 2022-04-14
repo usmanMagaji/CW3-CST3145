@@ -159,7 +159,7 @@ header{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 50px
+    margin-top: 20px
 	
 }
 .product-box{
